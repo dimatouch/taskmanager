@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override prose max-width */
+.prose {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Ensure text fills container width */
+.ProseMirror {
+  width: 100% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Ensure paragraphs fill width */
+.ProseMirror p {
+  width: 100% !important;
+  max-width: 100% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+/* TipTap Task List Styles */
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ProseMirror li[data-type="taskItem"] {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin: 0.5em 0;
+  padding-left: 0;
+}
+
+.ProseMirror li[data-type="taskItem"] > label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0.2em 0;
+}
+
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid #D1D5DB;
+  border-radius: 0.25em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"]:hover {
+  border-color: #6366F1;
+}
+
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"]:checked {
+  background-color: #6366F1;
+  border-color: #6366F1;
+}
+
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: white;
+  font-size: 0.8em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ProseMirror li[data-type="taskItem"] > div {
+  flex-grow: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0.2em 0;
+}
+
+.ProseMirror li[data-type="taskItem"].checked > div {
+  color: #9CA3AF;
+  text-decoration: line-through;
+}
+
+/* Nested task lists */
+.ProseMirror li[data-type="taskItem"] ul[data-type="taskList"] {
+  padding-left: 1.5em;
+}
+
+/* Focus styles */
+.ProseMirror li[data-type="taskItem"]:focus-within > label > input[type="checkbox"] {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Animation for checkbox */
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"] {
+  transform-origin: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"]:checked {
+  transform: scale(1.05);
+}
+
+/* Enhanced TipTap Task List Styles */
+.task-list-container {
+  list-style: none;
+  padding: 0.5em 0;
+  margin: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin: 0.5em 0;
+  width: 100%;
+}
+
+.task-item > label {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 0.1em;
+}
+
+.task-item input[type="checkbox"] {
+  cursor: pointer;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 2px solid #9ca3af;
+  border-radius: 0.25em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.task-item input[type="checkbox"]:hover {
+  border-color: #6366f1;
+}
+
+.task-item input[type="checkbox"]:checked {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.task-item input[type="checkbox"]:checked::after {
+  content: '✔';
+  color: white;
+  font-size: 0.8em;
+}
+
+.task-item > div {
+  flex-grow: 1;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.task-item > div p {
+  margin: 0;
+  line-height: inherit;
+}
+
+/* Existing scrollbar styles */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+    background-color: #D1D5DB;
+    border-radius: 9999px;
+  }
+  
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out forwards;
+}
